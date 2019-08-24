@@ -9,10 +9,27 @@ body {
   background-size: cover;
   width: 100vw;
   height: 100vh;
-}
-
-.container {
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+.bg-backgroud:before{
+  content: " ";
+  background-color: rgba(10, 10, 10, 0.329);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+}
+
+.card-body{
+  display: flex; 
+  flex-direction: column;
+}
+.card{
+  width: 30%;
+  margin:  0 auto;
+}
+
+.logo{
+  width: 150px;
+  margin: 0 auto;
 }
