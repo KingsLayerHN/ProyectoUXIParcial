@@ -1,3 +1,9 @@
+
+#boton_sesion{
+    float: right;
+    padding: 20px;
+    padding-right: 40px;
+}
 #boton_mas{
     float: right;
     padding: 20px;
