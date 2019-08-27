@@ -6,9 +6,10 @@ import $ from 'jquery';
 import 'bootstrap';
 import 'popper.js';
 import 'bootstrap/dist/css/bootstrap.css';
-//import { far } from '@fortawesome/free-regular-svg-icons';
-//import { library } from '@fortawesome/fontawesome-svg-core';
-//import { fab } from '@fortawesome/free-brands-svg-icons';
+import { far } from '@fortawesome/free-regular-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+//ejemplo de como usar: 
 window.jQuery = window.$ = $;
 require('datatables');
 //library.add(far, fab);
