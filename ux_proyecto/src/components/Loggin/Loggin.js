@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from '../Loggin/Logo.svg';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 
 export default class Loggin extends Component {
@@ -14,8 +15,9 @@ export default class Loggin extends Component {
               <input placeholder="Usuario" type="ingrese usuario" id="userAddNew" className="mb-1"></input>
               <input placeholder="Contraseña" type="password" id="passAddUser" className="mb-1"></input>
               <button className=" btn btn-primary mb-1">Entrar</button>
-              <button className=" btn btn-success">¿Eres nuevo?</button>  
-            </div>  
+              <button className=" btn btn-success">¿Eres nuevo?</button>
+              
+            </div>
           </div>
         </div>
       </div>

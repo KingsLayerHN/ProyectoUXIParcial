@@ -12,7 +12,7 @@ body {
   display: flex;
   align-items: center;
 }
-.bg-backgroud:before{
+.bg-backgroud:before {
   content: " ";
   background-color: rgba(10, 10, 10, 0.329);
   width: 100vw;
@@ -20,16 +20,39 @@ body {
   position: absolute;
 }
 
-.card-body{
-  display: flex; 
+.card-body {
+  display: flex;
   flex-direction: column;
 }
-.card{
+.card {
   width: 30%;
-  margin:  0 auto;
+  margin: 0 auto;
 }
 
-.logo{
+.logo {
   width: 150px;
   margin: 0 auto;
+}
+.page-header {
+  display: flex;
+}
+.icons {
+  color: rgb(141, 138, 138);
+  font-size: 2rem;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border: none;
+}
+
+.addplus {
+  width: 25px;
+  margin-right: 5px;
+}
+
+.icons:focus {
+  outline: 0;
+}
+.icons:hover {
+  color: rgb(124, 123, 123);
 }

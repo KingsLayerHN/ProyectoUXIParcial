@@ -9,7 +9,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab } from '@fortawesome/free-brands-svg-icons';
-//ejemplo de como usar: 
+import { fas } from '@fortawesome/free-solid-svg-icons';
+
+
+library.add(far, fab,fas); // add prefix to use fontAwesome regular and brands
 window.jQuery = window.$ = $;
 require('datatables');
 //library.add(far, fab);
