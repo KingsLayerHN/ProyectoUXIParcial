@@ -16,7 +16,6 @@ export default class Loggin extends Component {
               <input placeholder="Contraseña" type="password" id="passAddUser" className="mb-1"></input>
               <button className=" btn btn-primary mb-1">Entrar</button>
               <button className=" btn btn-success">¿Eres nuevo?</button>
-              
             </div>
           </div>
         </div>
