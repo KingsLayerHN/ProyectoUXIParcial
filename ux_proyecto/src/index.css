@@ -37,22 +37,28 @@ body {
   display: flex;
 }
 .icons {
-  color: rgb(141, 138, 138);
-  font-size: 2rem;
-  margin: 0;
-  padding: 0;
-  background: none;
+  color: rgb(136, 135, 135);
+  font-size: 1.5rem;
+  margin: .4rem;
+  padding: 5px;
+  width: 50px;
   border: none;
-}
-
-.addplus {
-  width: 25px;
-  margin-right: 5px;
+  background: none;
+  border-radius: 50%;
+  transition: background .5s;
+  
 }
 
 .icons:focus {
   outline: 0;
 }
-.icons:hover {
-  color: rgb(124, 123, 123);
+.navbar{
+  border-bottom: 1px solid;
+  border-color: rgb(233, 230, 230);
 }
+
+.icons:hover{
+  background:  rgb(250, 249, 249);
+}
+
+

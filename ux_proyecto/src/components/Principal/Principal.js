@@ -6,13 +6,13 @@ export default class Principal extends Component {
        
 render() {
     return (
-      <nav className=" navbar  navbar-expand-lg navbar-light bg-light page-header">
+      <nav className=" navbar  navbar-expand-lg navbar-light bg-white page-header ">
         <div className="btn-group dropright">
           <div className="dropdown-menu">
             <button className="dropdown-item" type="button"></button>
           </div>
         </div>
-        <div id="boton_sesion" className="dropdown dropleft ml-auto mr-3">
+        <div id="plusButton" className="dropdown dropleft ml-auto">
           <button
             className="dropdown-toogle icons"
             href="#"
@@ -31,7 +31,7 @@ render() {
           </div>
         </div>
 
-        <div id="boton_mas" className="btn-group dropleft mr-3">
+        <div id="userButton" className=" dropdown btn-group dropleft mr-3">
           <button
             className="dropdown-toogle icons"
             href="#"
