@@ -46,6 +46,10 @@ export default class Principal extends Component {
           </div>
         </div>
       </nav>
+      //add all class component here!!!
+      
+
+
     );
   }
 }

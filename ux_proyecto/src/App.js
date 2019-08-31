@@ -7,7 +7,7 @@ import Principal from './components/Principal/Principal';
 class App extends Component {
   render() {
     return (
-           <Principal/>
+           <Inicio/>
     );
   }
 }
