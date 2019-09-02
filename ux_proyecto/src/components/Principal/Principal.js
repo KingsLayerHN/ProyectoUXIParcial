@@ -86,7 +86,6 @@ export default class Principal extends Component {
                         <button type="button" className="btn btn-info" data-dismiss="modal">Cancelar</button>
                     </div>
                 </div>
-
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -220,7 +219,6 @@ export default class Principal extends Component {
           </div>
         </div>
       </nav>
-      //add all class component here!!
     );
   }
 }
