@@ -81,7 +81,7 @@ body {
 .header-blackboard {
   margin-top: 1rem;
   border-radius: 15px;
-  background: rgb(94, 174, 248);
+  background: rgb(55, 216, 34);
   height: 260px;
   position: relative;
 }
@@ -106,6 +106,8 @@ body {
   color: white;
 }
 
+/* Link Routing style*/
+.link-buttons {
+  list-style: none;
+}
 /* comments bblackboard styles*/
-
-

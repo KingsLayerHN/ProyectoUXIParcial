@@ -57,7 +57,7 @@ export default class Principal extends Component {
           </div>
         </div>
 
-        <div className="modal" id="mostrar_apuntarse">
+        <div className="modal fade" id="mostrar_apuntarse">
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
@@ -73,9 +73,9 @@ export default class Principal extends Component {
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <div className="input-group-prepend">
-                        <span1 className="input-group-text bg-info">
+                        <span className="input-group-text bg-info">
                           <h6 className="text-light">Código</h6>
-                        </span1>
+                        </span>
                       </div>
                       <input
                         className="form-control"
@@ -91,12 +91,12 @@ export default class Principal extends Component {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn bt-info">
+                <button type="button" className="btn btn-success">
                   Unirse
                 </button>
                 <button
                   type="button"
-                  className="btn btn-info"
+                  className="btn btn-danger"
                   data-dismiss="modal"
                 >
                   Cancelar
@@ -112,8 +112,9 @@ export default class Principal extends Component {
               <div className="modal-header text-center">
                 <h1 className="text-info lead text-center">Crear una clase</h1>
               </div>
-              <div className="modal-body">
-                <form action="/action_page.php" className="was-validated">
+
+              <div className="modal-body p-0 pt-3">
+                <form action="#" className="was-validated">
                   <div className="form-group form-check">
                     <label className="form-check-label">
                       <div className="input-group-prepend"></div>
@@ -123,14 +124,13 @@ export default class Principal extends Component {
                         required
                       ></input>
                       <div className="valid-feedback">Entrada en proceso</div>
-                      <div className="invalid-feedback">
-                        Por favor introduce el nombre de la clase
-                      </div>
+                      <div className="invalid-feedback">Ingresa materia</div>
                     </label>
                   </div>
                 </form>
               </div>
-              <div className="modal-body">
+
+              <div className="modal-body p-0">
                 <form action="/action_page.php" className="was-validated">
                   <div className="form-group form-check">
                     <label className="form-check-label">
@@ -141,14 +141,13 @@ export default class Principal extends Component {
                         required
                       ></input>
                       <div className="valid-feedback">Entrada en proceso</div>
-                      <div className="invalid-feedback">
-                        Por favor introduce la sección
-                      </div>
+                      <div className="invalid-feedback">Ingresa la sección</div>
                     </label>
                   </div>
                 </form>
               </div>
-              <div className="modal-body">
+
+              <div className="modal-body p-0">
                 <form action="/action_page.php" className="was-validated">
                   <div className="form-group form-check">
                     <label className="form-check-label">
@@ -160,13 +159,13 @@ export default class Principal extends Component {
                       ></input>
                       <div className="valid-feedback">Entrada en proceso</div>
                       <div className="invalid-feedback">
-                        Por favor introduce la materia
+                        Ingresa el nombre de la materia
                       </div>
                     </label>
                   </div>
                 </form>
               </div>
-              <div className="modal-body">
+              <div className="modal-body p-0">
                 <form action="/action_page.php" className="was-validated">
                   <div className="form-group form-check">
                     <label className="form-check-label">
@@ -177,20 +176,18 @@ export default class Principal extends Component {
                         required
                       ></input>
                       <div className="valid-feedback">Entrada en proceso</div>
-                      <div className="invalid-feedback">
-                        Por favor introduce el aula
-                      </div>
+                      <div className="invalid-feedback">Igresa el area</div>
                     </label>
                   </div>
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-info">
+                <button type="button" className="btn btn-success">
                   Crear
                 </button>
                 <button
                   type="button"
-                  className="btn btn-info"
+                  className="btn btn-danger"
                   data-dismiss="modal"
                 >
                   Cancelar
