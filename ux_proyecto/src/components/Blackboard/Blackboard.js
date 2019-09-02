@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import BlackboardHeader from './BlackboardHeader/BlackboardHeader';
-import BlackboardNav from './BlackboardNav/BlackboardNav';
+import React, { Component } from "react";
+import BlackboardHeader from "./BlackboardHeader/BlackboardHeader";
+import BlackboardNav from "./BlackboardNav/BlackboardNav";
 
 export default class Blackboard extends Component {
-    render() {
-        return (
-            <div>
-                < BlackboardNav />                
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <BlackboardNav />
+        <BlackboardHeader />
+      </div>
+    );
+  }
 }
