@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import './Registro.css';
 import logo from '../Loggin/Logo.svg';
 
 export default class Registro extends Component {
