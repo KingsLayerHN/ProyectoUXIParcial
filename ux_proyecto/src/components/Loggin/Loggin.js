@@ -4,12 +4,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 
 export default class Loggin extends Component {
-
   render() {
     return (
       <div className="bg-backgroud">
         <div className="container">
-          <div className="card">
+          <div className="card animated bounceIn">
             <div className="card-body">
               <img src={logo} className="logo"></img>
               <h3 className="text-center">Iniciar sesión</h3>
@@ -44,5 +43,5 @@ export default class Loggin extends Component {
 }
 
 const buttons_styles = {
-  'text-decoration' : 'none'
-}
+  "text-decoration": "none"
+};
