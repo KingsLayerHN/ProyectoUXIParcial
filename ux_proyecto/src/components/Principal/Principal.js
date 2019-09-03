@@ -69,26 +69,11 @@ export default class Principal extends Component {
                 </h6>
               </div>
               <div className="modal-body">
-                <form action="/action_page.php" className="was-validated">
-                  <div className="form-group form-check">
-                    <label className="form-check-label">
-                      <div className="input-group-prepend">
-                        <span className="input-group-text bg-info">
-                          <h6 className="text-light">Código</h6>
-                        </span>
-                      </div>
-                      <input
-                        className="form-control"
-                        placeholder="Codigo de la clase"
-                        required
-                      ></input>
-                      <div className="valid-feedback">Entrada en proceso</div>
-                      <div className="invalid-feedback">
-                        Por favor introduce el código
-                      </div>
-                    </label>
-                  </div>
-                </form>
+                <input
+                  placeholder="Ingresa Código clase"
+                  className="form-control input-style"
+                  required
+                ></input>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-success">

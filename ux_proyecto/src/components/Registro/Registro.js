@@ -4,7 +4,7 @@ import logo from "../Loggin/Logo.svg";
 export default class Registro extends Component {
   render() {
     return (
-      <div className="wrapper">
+      <div className="wrapper bg-backgroud">
         <div className="form-wrapper animated bounceInDown">
           <img src={logo} className="logo" alt="Logo"></img>
           <h1>Crear Cuenta</h1>
