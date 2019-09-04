@@ -24,7 +24,7 @@ const config = {
 };
 
 firebase.initializeApp(config);
-const db = firebase.firestore();
+
 library.add(far, fab, fas); // add prefix to use fontAwesome regular and brands
 window.jQuery = window.$ = $;
 require("datatables");
