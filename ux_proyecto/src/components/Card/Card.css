@@ -1,0 +1,16 @@
+#mycard{
+    width: 20rem;
+}
+#mycard:hover{
+    box-shadow: 5px 10px 20px 1px rgba(0,0,0.253)!important
+}
+#mycard-body{
+    padding:rem 0!important;
+}
+#mycard-text{
+    font-size: .9rem;
+    padding: 0.4rem 1.9rem;
+}
+#cards_container{
+    padding-top: 6rem;
+}
