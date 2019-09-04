@@ -11,6 +11,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import * as firebase from "firebase";
+import "./animate.css";
 
 //add a configuraition to use firebase
 const config = {
@@ -24,7 +25,6 @@ const config = {
 };
 
 firebase.initializeApp(config);
-
 library.add(far, fab, fas); // add prefix to use fontAwesome regular and brands
 window.jQuery = window.$ = $;
 require("datatables");
