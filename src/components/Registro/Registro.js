@@ -1,15 +1,14 @@
 import React, { Component } from "react";
 import logo from "../Loggin/Logo.svg";
 import { Link, withRouter } from "react-router-dom";
-import * as ROUTES from '../../constants/routes';
-import { FirebaseContext} from '../Firebase';
+import * as ROUTES from "../../constants/routes";
+import { withFirebase } from "../Firebase";
+import { Alert } from "react-bootstrap";
 //initial state for the component registro
 
 const SignUpPage = () => (
   <div>
-    <FirebaseContext.Consumer>
-    {firebase=> <Registro firebase ={firebase}/>}
-    </FirebaseContext.Consumer>
+    <SignUp />
   </div>
 );
 
@@ -34,19 +33,18 @@ class Registro extends Component {
   };
 
   //add user
-  onsubmit = event=>{
+  onSubmit = event => {
     const { email, name, midleName, password, repeatPassword } = this.state;
     this.props.firebase
-    .doCreateUserWithEmailAndPassword(email,password)
-    .then (authUser => {
-      this.state({...INITIAL_STATE});
-      this.props.history.push(ROUTES.HOME); 
-    })
-    .catch(error =>{
-      this.setState({error}); 
-    });
+      .doCreateUserWithEmailAndPassword(email, password)
+      .then(authUser => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.SIGN_IN);
+      })
+      .catch(error => {
+        this.setState({ error });
+      });
     event.preventDefault();
-    
   };
 
   render() {
@@ -85,7 +83,7 @@ class Registro extends Component {
                 placeholder="Apellido"
               />
             </div>
-           
+
             <div className="correo">
               <label htmlFor="correo">Correo</label>
               <input
@@ -122,7 +120,9 @@ class Registro extends Component {
               />
             </div>
             <div className="crearCuenta">
-              <button type="submit" disabled={isInvalid}>Crear Cuenta</button>
+              <button type="submit" disabled={isInvalid}>
+                Crear Cuenta
+              </button>
               <Link to="/" style={buttons_styles}>
                 Ya tienes una cuenta?
               </Link>
@@ -136,8 +136,6 @@ class Registro extends Component {
 const buttons_styles = {
   color: "rgb(136, 135, 125)"
 };
-
+const SignUp = withRouter(withFirebase(Registro));
 export default SignUpPage;
 export { Registro };
-
-
