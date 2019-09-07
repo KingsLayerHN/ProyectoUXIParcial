@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import add from "./add.svg";
+import { Link } from "react-router-dom";
 
 export default class Principal extends Component {
   render() {
@@ -167,9 +168,11 @@ export default class Principal extends Component {
                 </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-success">
-                  Crear
-                </button>
+                <Link to="/card">
+                  <button type="button" className="btn btn-success" data-dismiss="modal-backdrop fade show">
+                    Crear
+                  </button>
+                </Link>
                 <button
                   type="button"
                   className="btn btn-danger"
@@ -186,3 +189,5 @@ export default class Principal extends Component {
     );
   }
 }
+
+
