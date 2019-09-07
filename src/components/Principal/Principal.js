@@ -169,7 +169,7 @@ export default class Principal extends Component {
               </div>
               <div className="modal-footer">
                 <Link to="/card">
-                  <button type="button" className="btn btn-success" data-dismiss="modal-backdrop fade show">
+                  <button type="button" className="btn btn-success">
                     Crear
                   </button>
                 </Link>
