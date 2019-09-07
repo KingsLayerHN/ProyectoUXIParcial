@@ -1,8 +1,18 @@
 import React, { Component } from "react";
 import logo from "../Loggin/Logo.svg";
-import { Link } from "react-router-dom";
-
+import { Link, withRouter } from "react-router-dom";
+import * as ROUTES from '../../constants/routes';
+import { FirebaseContext} from '../Firebase';
 //initial state for the component registro
+
+const SignUpPage = () => (
+  <div>
+    <FirebaseContext.Consumer>
+    {firebase=> <Registro firebase ={firebase}/>}
+    </FirebaseContext.Consumer>
+  </div>
+);
+
 const INITIAL_STATE = {
   email: "", //email also its the username
   name: "",
@@ -12,7 +22,7 @@ const INITIAL_STATE = {
   error: null
 };
 
-export default class Registro extends Component {
+class Registro extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -21,6 +31,22 @@ export default class Registro extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+  };
+
+  //add user
+  onsubmit = event=>{
+    const { email, name, midleName, password, repeatPassword } = this.state;
+    this.props.firebase
+    .doCreateUserWithEmailAndPassword(email,password)
+    .then (authUser => {
+      this.state({...INITIAL_STATE});
+      this.props.history.push(ROUTES.HOME); 
+    })
+    .catch(error =>{
+      this.setState({error}); 
+    });
+    event.preventDefault();
+    
   };
 
   render() {
@@ -49,16 +75,17 @@ export default class Registro extends Component {
               />
             </div>
             <div className="apellido">
-              <label htmlFor="apellido">Apellido</label>
+              <label htmlFor="nombre">Apellido</label>
               <input
+                name="midleName"
                 type="text"
-                placeholder="Apellido"
-                name="midlename"
                 value={midleName}
                 noValidate
                 onChange={this.onChange}
+                placeholder="Apellido"
               />
             </div>
+           
             <div className="correo">
               <label htmlFor="correo">Correo</label>
               <input
@@ -95,7 +122,7 @@ export default class Registro extends Component {
               />
             </div>
             <div className="crearCuenta">
-              <button type="submit">Crear Cuenta</button>
+              <button type="submit" disabled={isInvalid}>Crear Cuenta</button>
               <Link to="/" style={buttons_styles}>
                 Ya tienes una cuenta?
               </Link>
@@ -109,3 +136,8 @@ export default class Registro extends Component {
 const buttons_styles = {
   color: "rgb(136, 135, 125)"
 };
+
+export default SignUpPage;
+export { Registro };
+
+
