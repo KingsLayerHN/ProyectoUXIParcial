@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import img1 from '../../images/Clase1.jpg';
 import "./Card.css";
+
 const Card= props =>{
     return(
         <div id="mycard" className="card text-center">
@@ -9,7 +10,9 @@ const Card= props =>{
             </div>
             <div id="mycard-body" className="card-body text-dark">
                 <h4 id="mycard-title" className="card-title">{props.title}</h4>
-                <p id="mycard-text" className="card-text text-secondary">Seccion</p>
+                <h5 id="mycard-text" className="card-text text-secondary">{props.seccion}</h5>
+                <h5 id="mycard-text" className="card-text text-secondary">{props.materia}</h5>
+                <h5 id="mycard-text" className="card-text text-secondary">{props.aula}</h5>
                 <button type="button" class="btn btn-primary">Ingresar</button>
             </div>
         </div>

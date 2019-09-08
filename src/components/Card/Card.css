@@ -12,5 +12,8 @@
     padding: 0.4rem 1.9rem;
 }
 #cards_container{
+    padding-top: 2rem;
+}
+.container-fluid .row{
     padding-top: 6rem;
 }

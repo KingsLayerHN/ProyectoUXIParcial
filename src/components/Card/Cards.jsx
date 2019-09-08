@@ -11,7 +11,10 @@ class Cards extends Component {
             <div id="cards_container" className="div.container-fluid.d-flex justify-content-center>">
                 <div className="row">
                     <div className="col-md-4">
-                        <Card imgsrc={img} title="Clase"/>
+                        <Card imgsrc={img} title="Clase" seccion="Seccion" materia="Materia" aula="Aula" />
+                    </div>
+                    <div className="col-md-4">
+                        <Card imgsrc={img} title="Clase" seccion="Seccion" materia="Materia" aula="Aula" />
                     </div>
                 </div>
             </div>
