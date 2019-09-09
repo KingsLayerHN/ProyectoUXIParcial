@@ -57,7 +57,7 @@ class Loggin extends Component {
                 type="email"
                 name="email"
                 value={email}
-                className="mb-1 d-block"
+                className="mb-1 d-block w-100"
                 onChange={this.onChange}
               ></input>
               <input
@@ -66,7 +66,7 @@ class Loggin extends Component {
                 name="password"
                 value={password}
                 onChange={this.onChange}
-                className="mb-1 d-block"
+                className="mb-1 d-block w-100"
               ></input>
               <button
                 className=" btn btn-primary mb-1 d-block w-100"

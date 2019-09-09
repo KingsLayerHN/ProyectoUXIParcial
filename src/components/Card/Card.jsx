@@ -13,7 +13,7 @@ const Card= props =>{
                 <h5 id="mycard-text" className="card-text text-secondary">Seccion</h5>
                 <h5 id="mycard-text" className="card-text text-secondary">Materia</h5>
                 <h5 id="mycard-text" className="card-text text-secondary">Aula</h5>
-                <button type="button" class="btn btn-primary">Ingresar</button>
+                <button type="button" className="btn btn-primary">Ingresar</button>
             </div>
         </div>
     );

@@ -35,6 +35,7 @@ body {
   width: 150px;
   margin: 0 auto;
 }
+
 .page-header {
   display: flex;
 }
@@ -153,14 +154,14 @@ label {
 }
 
 input {
-  padding: 10px 10px;
+  padding: 5px 5px;
   border-radius: 5px;
   outline: none;
   border: 1px solid #cfcfcf;
 }
 
 input::placeholder {
-  font-size: 1.2em;
+  font-size: 1em;
   font-weight: lighter;
   color: #999;
 }
@@ -171,7 +172,7 @@ input.error {
 
 .errorMessage {
   color: red;
-  font-size: 0.75em;
+  font-size: 0.55em;
   display: relative;
 }
 
@@ -189,7 +190,7 @@ input.error {
 .contraseña {
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .nombre,
@@ -214,12 +215,10 @@ input.error {
   color: #fff;
   border: 2px solid #fff;
   width: 100%;
-  margin-top: 1em;
-  padding: 8px 0px;
+  padding: 6px 0px;
   font-size: 1em;
   font-weight: lighter;
   letter-spacing: 1px;
-  margin-bottom: 0.25em;
 }
 
 .crearCuenta button:hover {
@@ -239,5 +238,5 @@ input.error {
   border-radius: none !important; 
 }
 #cards_container{
-  padding-top: 2rem;
+  padding-top: 1rem;
 }
