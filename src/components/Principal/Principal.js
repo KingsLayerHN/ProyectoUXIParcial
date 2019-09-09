@@ -7,9 +7,6 @@ import img from '../../images/Clase.jpg';
 
 
 export default class Principal extends Component {
-  botonwasClicked(){
-    alert('Clicked')
-  }
   render() {
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
@@ -106,7 +103,7 @@ export default class Principal extends Component {
                 </div>
 
                 <div className="modal-body p-0 pt-3">
-                  <form action="#" className="was-validated">
+                  <form onSubmit={this.handleSubmit} className="was-validated">
                     <div className="form-group form-check">
                       <label className="form-check-label">
                         <div className="input-group-prepend"></div>
@@ -114,17 +111,11 @@ export default class Principal extends Component {
                           placeholder="Nombre de la clase (obligatorio)"
                           className="form-control"
                           required
+                          type="text"
                         ></input>
                         <div className="valid-feedback">Entrada en proceso</div>
                         <div className="invalid-feedback">Ingresa materia</div>
                       </label>
-                    </div>
-                  </form>
-                </div>
-
-                <div className="modal-body p-0">
-                  <form action="/action_page.php" className="was-validated">
-                    <div className="form-group form-check">
                       <label className="form-check-label">
                         <div className="input-group-prepend"></div>
                         <input
@@ -135,13 +126,6 @@ export default class Principal extends Component {
                         <div className="valid-feedback">Entrada en proceso</div>
                         <div className="invalid-feedback">Ingresa la sección</div>
                       </label>
-                    </div>
-                  </form>
-                </div>
-
-                <div className="modal-body p-0">
-                  <form action="/action_page.php" className="was-validated">
-                    <div className="form-group form-check">
                       <label className="form-check-label">
                         <div className="input-group-prepend"></div>
                         <input
@@ -154,12 +138,6 @@ export default class Principal extends Component {
                           Ingresa el nombre de la materia
                         </div>
                       </label>
-                    </div>
-                  </form>
-                </div>
-                <div className="modal-body p-0">
-                  <form action="/action_page.php" className="was-validated">
-                    <div className="form-group form-check">
                       <label className="form-check-label">
                         <div className="input-group-prepend"></div>
                         <input
@@ -168,11 +146,12 @@ export default class Principal extends Component {
                           required
                         ></input>
                         <div className="valid-feedback">Entrada en proceso</div>
-                        <div className="invalid-feedback">Igresa el area</div>
+                        <div className="invalid-feedback">Ingresa el aula</div>
                       </label>
                     </div>
                   </form>
                 </div>
+
                 <div className="modal-footer">
                   <button type="button" onClick={this.botonwasClicked} className="btn btn-success">
                       Crear
