@@ -7,7 +7,25 @@ import img from '../../images/Clase.jpg';
 
 
 export default class Principal extends Component {
+  constructor(props){
+    super(props)
+      this.state = {
+        name: null
+      }
+  }
+  handleSubmit = (event) =>{
+    event.preventDefault()
+    const data = this.state
+    console.log("Final Data is: ", data)
+    alert(data)
+  }
+  handleInputChange = (event) =>{
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
   render() {
+    const {name}=this.state
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
         <nav className=" navbar  navbar-expand-lg navbar-light bg-white page-header ">
@@ -108,10 +126,11 @@ export default class Principal extends Component {
                       <label className="form-check-label">
                         <div className="input-group-prepend"></div>
                         <input
-                          placeholder="Nombre de la clase (obligatorio)"
                           className="form-control"
                           required
                           type="text"
+                          name= 'name'
+                          onChange={this.handleInputChange}
                         ></input>
                         <div className="valid-feedback">Entrada en proceso</div>
                         <div className="invalid-feedback">Ingresa materia</div>
@@ -153,7 +172,7 @@ export default class Principal extends Component {
                 </div>
 
                 <div className="modal-footer">
-                  <button type="button" onClick={this.botonwasClicked} className="btn btn-success">
+                  <button type="button" className="btn btn-success" data-dismiss="modal">
                       Crear
                   </button>
                   <button
