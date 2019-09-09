@@ -3,7 +3,6 @@ import logo from "../Loggin/Logo.svg";
 import { Link, withRouter } from "react-router-dom";
 import * as ROUTES from "../../constants/routes";
 import { withFirebase } from "../Firebase";
-import { Alert } from "react-bootstrap";
 //initial state for the component registro
 
 const SignUpPage = () => (

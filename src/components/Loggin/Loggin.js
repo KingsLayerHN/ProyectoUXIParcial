@@ -1,40 +1,86 @@
 import React, { Component } from "react";
 import logo from "../Loggin/Logo.svg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link } from "react-router-dom";
+import { withFirebase } from "../Firebase";
+import { Link, withRouter } from "react-router-dom";
+import * as ROUTES from "../../constants/routes";
 
-export default class Loggin extends Component {
+const SignInPage = () => (
+  <div>
+    <SingIn />
+  </div>
+);
+
+const INITIAL_STATE = {
+  email: "", //email also its the username
+  password: "",
+  error: null
+};
+
+class Loggin extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { ...INITIAL_STATE };
+  }
+
+  onSubmit = event => {
+    const { email, password } = this.state;
+    this.props.firebase
+      .doSignInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch(error => {
+        alert('Usuario o contraseña incorrecta');
+        this.setState({ ...INITIAL_STATE });
+      });
+    event.preventDefault();
+  };
+
+  onChange = event => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
   render() {
+    const { email, password } = this.state;
+    const isInvalid = email === "" || password === "";
+
     return (
       <div className="bg-backgroud">
         <div className="container">
           <div className="card animated bounceIn">
-            <div className="card-body">
+            <form onSubmit={this.onSubmit} className="card-body">
               <img src={logo} className="logo"></img>
               <h3 className="text-center">Iniciar sesión</h3>
               <input
                 placeholder="Usuario"
-                type="ingrese usuario"
-                id="userAddNew"
-                className="mb-1"
+                type="email"
+                name="email"
+                value={email}
+                className="mb-1 d-block"
+                onChange={this.onChange}
               ></input>
               <input
                 placeholder="Contraseña"
                 type="password"
-                id="passAddUser"
-                className="mb-1"
+                name="password"
+                value={password}
+                onChange={this.onChange}
+                className="mb-1 d-block"
               ></input>
-              <Link to="/home" style={buttons_styles}>
-                <button className=" btn btn-primary mb-1 d-block w-100">
-                  Entrar
-                </button>
-              </Link>
+              <button
+                className=" btn btn-primary mb-1 d-block w-100"
+                type="submit"
+                disabled={isInvalid}
+              >
+                Entrar
+              </button>
               <Link to="/registro" style={buttons_styles}>
                 <button className=" btn btn-success d-block w-100">
                   ¿Eres nuevo?
                 </button>
               </Link>
-            </div>
+            </form>
           </div>
         </div>
       </div>
@@ -45,3 +91,7 @@ export default class Loggin extends Component {
 const buttons_styles = {
   "text-decoration": "none"
 };
+
+const SingIn = withRouter(withFirebase(Loggin));
+export default SignInPage;
+export { Loggin };
