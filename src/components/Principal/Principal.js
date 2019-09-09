@@ -2,22 +2,23 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import add from "./add.svg";
 import { Link } from "react-router-dom";
-import Cards from '../Card/Cards';
+import Card from '../Card/Card';
 import img from '../../images/Clase.jpg';
 
 
 export default class Principal extends Component {
-  
+  botonwasClicked(){
+    alert('Clicked')
+  }
   render() {
     return (
-      <div id="clases_container" className="div.container-fluid.d-flex justify-content-center">
+      <div className="div.container-fluid.d-flex justify-content-center">
         <nav className=" navbar  navbar-expand-lg navbar-light bg-white page-header ">
           <div className="btn-group dropright">
             <div className="dropdown-menu">
               <button className="dropdown-item" type="button"></button>
             </div>
           </div>
-
           <div id="plusButton" className="dropdown dropleft ml-auto">
             <button
               className="dropdown-toogle icons"
@@ -173,7 +174,7 @@ export default class Principal extends Component {
                   </form>
                 </div>
                 <div className="modal-footer">
-                  <button type="button" className="btn btn-success">
+                  <button type="button" onClick={this.botonwasClicked} className="btn btn-success">
                       Crear
                   </button>
                   <button
@@ -188,9 +189,13 @@ export default class Principal extends Component {
             </div>
           </div>
         </nav>
-          <Cards />
+      <div id="cards_container">
+        <Card />
       </div>
-      //add all class component here!!z
+      </div>
+
+      //add all class component here!!
+
     );
     
   }
