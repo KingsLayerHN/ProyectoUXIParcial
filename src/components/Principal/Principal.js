@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import add from "./add.svg";
 import { Link } from "react-router-dom";
 import Card from '../Card/Card';
+import SignOutButton from '../SignOut/SignOut';
 
 
 export default class Principal extends Component {
@@ -82,9 +83,7 @@ export default class Principal extends Component {
               <FontAwesomeIcon icon={["far", "user"]} />
             </button>
             <div className="dropdown-menu">
-              <button className="dropdown-item" type="button">
-                Cerrar sesión
-              </button>
+              <SignOutButton style={buttons_styles}/>
             </div>
           </div>
 
@@ -203,4 +202,7 @@ export default class Principal extends Component {
   }
 }
 
-
+const buttons_styles = {
+  "textDecoration": "none",
+  "background": "none"
+};
