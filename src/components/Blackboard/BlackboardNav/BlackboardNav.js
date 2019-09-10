@@ -65,13 +65,13 @@ export default class BlackboardNav extends Component {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn">
-                            Unirse
+                            Crear tarea
                         </button>
                         <button
                             type="button"
                             className="btn"
                             data-dismiss="modal">
-                            Cancelar
+                            Cancelar tarea
                         </button>
                     </div>
                 </div>
