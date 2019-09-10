@@ -10,6 +10,9 @@ class Cards extends Component {
                     <div className="col-md-4">
                         <Card imgsrc={img} title="Clase" seccion="Seccion" materia="Materia" aula="Aula" />
                     </div>
+                    <div className="col-md-4">
+                        <Card imgsrc={img} title="Clase" seccion="Seccion" materia="Materia" aula="Aula" />
+                    </div>
                 </div>
             </div>
         )

@@ -240,3 +240,7 @@ input.error {
 #cards_container{
   padding-top: 1rem;
 }
+#atributes_container{
+  padding-top: 2rem;
+  padding-left: 2rem;
+}
