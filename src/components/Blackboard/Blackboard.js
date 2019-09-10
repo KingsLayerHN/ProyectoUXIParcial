@@ -8,7 +8,7 @@ export default class Blackboard extends Component {
     return (
       <div>
         <BlackboardNav />
-        <BlackboardTask />
+        <BlackboardHeader />
         
       </div>
     );
