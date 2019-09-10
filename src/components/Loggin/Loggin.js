@@ -27,6 +27,9 @@ class Loggin extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
+        this.props.firebase.db.collection("Users").add(
+          this.state
+        )
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
@@ -89,7 +92,7 @@ class Loggin extends Component {
 }
 
 const buttons_styles = {
-  "text-decoration": "none"
+  "textDecoration": "none"
 };
 
 const SingIn = withRouter(withFirebase(Loggin));

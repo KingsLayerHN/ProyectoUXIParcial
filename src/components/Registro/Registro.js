@@ -16,8 +16,7 @@ const INITIAL_STATE = {
   name: "",
   midleName: "",
   password: "",
-  repeatPassword: "",
-  error: null
+  repeatPassword: ""
 };
 
 class Registro extends Component {
@@ -37,12 +36,19 @@ class Registro extends Component {
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
+        this.props.firebase.db.collection("Users").add({
+          name,
+          midleName,
+          email
+        }
+        )
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.SIGN_IN);
       })
       .catch(error => {
         this.setState({ error });
       });
+      
     event.preventDefault();
   };
 
