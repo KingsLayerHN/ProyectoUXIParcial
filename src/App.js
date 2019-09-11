@@ -5,21 +5,29 @@ import Principal from "./components/Principal/Principal";
 import Blackboard from "./components/Blackboard/Blackboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as ROUTES from './constants/routes';
+import { AutUserContext } from './components/Sesion';
+import { withFirebase } from "./components/Firebase";
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+        authUser: null,
+    };
+  }
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route exact path={ROUTES.SIGN_IN} component={Loggin} />
-          <Route path={ROUTES.HOME} component={Principal} />
-          <Route path={ROUTES.SING_UP} component={Registro} />
-          <Route path={ROUTES.BLACKBOARD} component={Blackboard} />
-        </Switch>
-      </Router>
+        <Router>
+          <Switch>
+              <Route exact path={ROUTES.SIGN_IN} component={Loggin} />
+              <Route path={ROUTES.HOME} component={Principal} />
+              <Route path={ROUTES.SING_UP} component={Registro} />
+              <Route path={ROUTES.BLACKBOARD} component={Blackboard} />
+          </Switch>
+        </Router>
     );
   }
 }
 
-export default App;
+export default withFirebase(App);
