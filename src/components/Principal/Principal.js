@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import add from "./add.svg";
-import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
-import { withFirebase } from '../Firebase';
-import { withRouter } from 'react-router-dom';
+import { withFirebase } from "../Firebase";
+import { withRouter } from "react-router-dom";
 
 const homePage = () => (
   <div>
@@ -14,6 +12,10 @@ const homePage = () => (
   </div>
 );
 
+const buttons_styles = {
+  textDecoration: "none",
+  background: "none"
+};
 
 class Principal extends Component {
   constructor(props) {
@@ -91,7 +93,7 @@ class Principal extends Component {
             >
               <FontAwesomeIcon icon={["far", "user"]} />
             </button>
-            <div className="dropdown-menu">
+            <div className="dropdown-menu text-center ">
               <SignOutButton style={buttons_styles} />
             </div>
           </div>
@@ -234,10 +236,6 @@ class Principal extends Component {
     );
   }
 }
-const buttons_styles = {
-  textDecoration: "none",
-  background: "none"
-};
 
 const Home = withRouter(withFirebase(Principal));
 const condition = authUser => !!authUser;

@@ -244,3 +244,19 @@ input.error {
   padding-top: 2rem;
   padding-left: 2rem;
 }
+
+
+.signoutButton{
+  border: none !important;
+  background: none;
+  text-align: center;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.signoutButton:hover{
+  background-color: #f5f5f5 !important;
+  padding-left: 30px;
+  padding-right: 30px;
+  
+}
