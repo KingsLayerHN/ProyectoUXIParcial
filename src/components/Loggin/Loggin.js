@@ -12,8 +12,7 @@ const SignInPage = () => (
 
 const INITIAL_STATE = {
   email: "", //email also its the username
-  password: "",
-  error: null
+  password: ""
 };
 
 class Loggin extends Component {
@@ -27,9 +26,6 @@ class Loggin extends Component {
     this.props.firebase
       .doSignInWithEmailAndPassword(email, password)
       .then(() => {
-        this.props.firebase.db.collection("Users").add(
-          this.state
-        )
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.HOME);
       })
