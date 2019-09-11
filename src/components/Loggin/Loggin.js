@@ -74,7 +74,7 @@ class Loggin extends Component {
               >
                 Entrar
               </button>
-              <Link to="/registro" style={buttons_styles}>
+              <Link to={ROUTES.SING_UP} style={buttons_styles}>
                 <button className=" btn btn-success d-block w-100">
                   ¿Eres nuevo?
                 </button>

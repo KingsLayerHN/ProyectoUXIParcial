@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Card from "../Card/Card";
+import Card from "../Card/Card.js";
 import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
@@ -12,6 +12,12 @@ const homePage = () => (
   </div>
 );
 
+const INITIAL_STATE = {
+  nombreClase: "", //email also its the username
+  seccionClase: "",
+  aulaClase: ""
+};
+
 const buttons_styles = {
   textDecoration: "none",
   background: "none"
@@ -20,12 +26,7 @@ const buttons_styles = {
 class Principal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      nombreClase: "",
-      materiaClase: "",
-      seccionClase: "",
-      aulaClase: ""
-    };
+    this.state = { ...INITIAL_STATE };
   }
   handleSubmit = event => {
     event.preventDefault();
@@ -40,9 +41,7 @@ class Principal extends Component {
     });
   };
   render() {
-    const { nombreClase } = this.state;
-    const { seccionClase } = this.state;
-    const { aulaClase } = this.state;
+    const { nombreClase, seccionClase, aulaClase } = this.state;
     function addCard() {
       alert("Agregar Tarjetas con props");
       this.inputEntry.value = "";
@@ -101,9 +100,9 @@ class Principal extends Component {
           <div className="modal fade" id="mostrar_apuntarse">
             <div className="modal-dialog">
               <div className="modal-content">
-                <div className="modal-header">
-                  <h4 className="modal-title">Apuntarse a una clase</h4>
-                </div>
+                <h4 className="modal-header text-center">
+                  Apuntarse a una clase
+                </h4>
                 <div className="modal-body">
                   <h6>
                     Pídele el código de la clase a tu profesor e introdúcelo
@@ -143,69 +142,43 @@ class Principal extends Component {
                 </div>
 
                 <div className="modal-body">
-                  <form onSubmit={this.handleSubmit} className="was-validated">
+                  <form onSubmit={this.handleSubmit}>
                     <div className="form-group form-check">
-                      <label className="form-check-label">
-                        <div className="input-group-prepend"></div>
-                        <input
-                          placeholder="Nombre de la clase (obligatorio)"
-                          value={nombreClase}
-                          name="nombreClase"
-                          className="form-control"
-                          required
-                          onChange={this.handleInputChange}
-                        ></input>
-                        <div className="valid-feedback">Entrada en proceso</div>
-                        <div className="invalid-feedback">
-                          Por favor introduce el nombre de la clase
-                        </div>
-                      </label>
+                      <input
+                        placeholder="Nombre clase"
+                        value={nombreClase}
+                        name="nombreClase"
+                        className="form-control"
+                        required
+                        onChange={this.handleInputChange}
+                      ></input>
                     </div>
-                  </form>
-                  <form onSubmit={this.handleSubmit} className="was-validated">
                     <div className="form-group form-check">
-                      <label className="form-check-label">
-                        <div className="input-group-prepend"></div>
-                        <input
-                          placeholder="Sección"
-                          className="form-control"
-                          required
-                          name="seccionClase"
-                          value={seccionClase}
-                          onChange={this.handleInputChange}
-                        ></input>
-                        <div className="valid-feedback">Entrada en proceso</div>
-                        <div className="invalid-feedback">
-                          Por favor introduce la sección
-                        </div>
-                      </label>
+                      <input
+                        placeholder="Seccion"
+                        value={seccionClase}
+                        name="seccionClase"
+                        className="form-control"
+                        required
+                        onChange={this.handleInputChange}
+                      ></input>
                     </div>
-                  </form>
-                  <form onSubmit={this.handleSubmit} className="was-validated">
                     <div className="form-group form-check">
-                      <label className="form-check-label">
-                        <div className="input-group-prepend"></div>
-                        <input
-                          placeholder="Aula"
-                          className="form-control"
-                          required
-                          name="aulaClase"
-                          value={aulaClase}
-                          onChange={this.handleInputChange}
-                        ></input>
-                        <div className="valid-feedback">Entrada en proceso</div>
-                        <div className="invalid-feedback">
-                          Por favor introduce el Aula
-                        </div>
-                      </label>
+                      <input
+                        placeholder="Aula"
+                        value={aulaClase}
+                        name="aulaClase"
+                        className="form-control"
+                        required
+                        onChange={this.handleInputChange}
+                      ></input>
                     </div>
                   </form>
                 </div>
 
                 <div className="modal-footer">
                   <button
-                    onClick={addCard}
-                    type="button"
+                    type="submit"
                     className="btn btn-success"
                     data-dismiss="modal"
                   >
@@ -223,14 +196,6 @@ class Principal extends Component {
             </div>
           </div>
         </nav>
-        <div id="cards_container">
-          <Card />
-          <div id="atributes_container">
-            <p>Nombre: {nombreClase}</p>
-            <p>Seccion: {seccionClase}</p>
-            <p>Aula: {aulaClase}</p>
-          </div>
-        </div>
       </div>
       //add all class component here!!
     );
