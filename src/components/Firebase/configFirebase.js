@@ -28,11 +28,10 @@ export default class Firebase {
     this.auth.signInWithEmailAndPassword(email, password);
 
   doSignOut = () => this.auth.signOut();
-  
+
   //reset password
   pswReset = email => this.auth.sendPasswordResetEmail(email);
 
   //update password
   pswUpdate = password => this.auth.currentUser.updatePassword(password);
 }
-

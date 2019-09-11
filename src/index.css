@@ -232,15 +232,15 @@ input.error {
   font-weight: lighter;
 }
 
-.input-style{
+.input-style {
   border: none !important;
   border-bottom: 1px solid rgb(180, 179, 179) !important;
-  border-radius: none !important; 
+  border-radius: none !important;
 }
-#cards_container{
+#cards_container {
   padding-top: 1rem;
 }
-#atributes_container{
+#atributes_container {
   padding-top: 2rem;
   padding-left: 2rem;
 }

@@ -40,16 +40,15 @@ class Registro extends Component {
           name,
           midleName,
           email
-        }
-        )
+        });
         this.setState({ ...INITIAL_STATE });
         this.props.history.push(ROUTES.SIGN_IN);
       })
       .catch(error => {
-        alert('El correo ya se encuentra registrado!!!');
+        alert("El correo ya se encuentra registrado!!!");
         this.setState({ ...INITIAL_STATE });
       });
-      
+
     event.preventDefault();
   };
 

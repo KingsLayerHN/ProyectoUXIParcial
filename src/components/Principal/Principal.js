@@ -2,39 +2,48 @@ import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import add from "./add.svg";
 import { Link } from "react-router-dom";
-import Card from '../Card/Card';
-import SignOutButton from '../SignOut/SignOut';
+import Card from "../Card/Card";
+import SignOutButton from "../SignOut/SignOut";
+import { withAuthorization } from "../Sesion";
+import { withFirebase } from '../Firebase';
+import { withRouter } from 'react-router-dom';
+
+const homePage = () => (
+  <div>
+    <Home />
+  </div>
+);
 
 
-export default class Principal extends Component {
-  constructor(props){
-    super(props)
+class Principal extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      nombreClase: '',
-      materiaClase: '',
-      seccionClase: '',
-      aulaClase: ''
-    }
+      nombreClase: "",
+      materiaClase: "",
+      seccionClase: "",
+      aulaClase: ""
+    };
   }
-  handleSubmit = (event) => {
-    event.preventDefault()
-  }
-  handleInputChange = (event) => {
-    event.preventDefault()
-    console.log(event)
-    console.log('Name: ',event.target.name)
-    console.log('Value: ',event.target.value)
+  handleSubmit = event => {
+    event.preventDefault();
+  };
+  handleInputChange = event => {
+    event.preventDefault();
+    console.log(event);
+    console.log("Name: ", event.target.name);
+    console.log("Value: ", event.target.value);
     this.setState({
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
   render() {
-    const {nombreClase} = this.state
-    const {seccionClase} = this.state
-    const {aulaClase} = this.state
-    function addCard(){
-      alert("Agregar Tarjetas con props")
-      this.inputEntry.value = '';
+    const { nombreClase } = this.state;
+    const { seccionClase } = this.state;
+    const { aulaClase } = this.state;
+    function addCard() {
+      alert("Agregar Tarjetas con props");
+      this.inputEntry.value = "";
     }
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
@@ -83,7 +92,7 @@ export default class Principal extends Component {
               <FontAwesomeIcon icon={["far", "user"]} />
             </button>
             <div className="dropdown-menu">
-              <SignOutButton style={buttons_styles}/>
+              <SignOutButton style={buttons_styles} />
             </div>
           </div>
 
@@ -95,7 +104,8 @@ export default class Principal extends Component {
                 </div>
                 <div className="modal-body">
                   <h6>
-                    Pídele el código de la clase a tu profesor e introdúcelo aquí.
+                    Pídele el código de la clase a tu profesor e introdúcelo
+                    aquí.
                   </h6>
                 </div>
                 <div className="modal-body">
@@ -125,54 +135,79 @@ export default class Principal extends Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-header text-center">
-                  <h1 className="text-info lead text-center">Crear una clase</h1>
+                  <h1 className="text-info lead text-center">
+                    Crear una clase
+                  </h1>
                 </div>
 
                 <div className="modal-body">
-                       <form onSubmit={this.handleSubmit} className="was-validated">
-                            <div className="form-group form-check">
-                                <label className="form-check-label">
-                                    <div className="input-group-prepend">
-                                    </div>
-                                   <input placeholder="Nombre de la clase (obligatorio)" 
-                                   value={nombreClase}
-                                   name='nombreClase' 
-                                   className="form-control" 
-                                   required
-                                   onChange={this.handleInputChange}>                                     
-                                   </input>
-                                    <div className="valid-feedback">Entrada en proceso</div>
-                                    <div className="invalid-feedback">Por favor introduce el nombre de la clase</div>
-                                </label>
-                            </div>        
-                        </form>
-                        <form onSubmit={this.handleSubmit} className="was-validated">
-                            <div className="form-group form-check">
-                                <label className="form-check-label">
-                                    <div className="input-group-prepend">
-                                    </div>
-                                   <input placeholder="Sección" className="form-control" required name='seccionClase' value={seccionClase} onChange={this.handleInputChange}></input>
-                                    <div className="valid-feedback">Entrada en proceso</div>
-                                    <div className="invalid-feedback">Por favor introduce la sección</div>
-                                </label>
-                            </div>        
-                        </form>
-                        <form onSubmit={this.handleSubmit} className="was-validated">
-                            <div className="form-group form-check">
-                                <label className="form-check-label">
-                                    <div className="input-group-prepend">
-                                    </div>
-                                   <input placeholder="Aula" className="form-control" required name='aulaClase' value={aulaClase} onChange={this.handleInputChange}></input>
-                                    <div className="valid-feedback">Entrada en proceso</div>
-                                    <div className="invalid-feedback">Por favor introduce el Aula</div>
-                                </label>
-                            </div>        
-                        </form>
+                  <form onSubmit={this.handleSubmit} className="was-validated">
+                    <div className="form-group form-check">
+                      <label className="form-check-label">
+                        <div className="input-group-prepend"></div>
+                        <input
+                          placeholder="Nombre de la clase (obligatorio)"
+                          value={nombreClase}
+                          name="nombreClase"
+                          className="form-control"
+                          required
+                          onChange={this.handleInputChange}
+                        ></input>
+                        <div className="valid-feedback">Entrada en proceso</div>
+                        <div className="invalid-feedback">
+                          Por favor introduce el nombre de la clase
+                        </div>
+                      </label>
+                    </div>
+                  </form>
+                  <form onSubmit={this.handleSubmit} className="was-validated">
+                    <div className="form-group form-check">
+                      <label className="form-check-label">
+                        <div className="input-group-prepend"></div>
+                        <input
+                          placeholder="Sección"
+                          className="form-control"
+                          required
+                          name="seccionClase"
+                          value={seccionClase}
+                          onChange={this.handleInputChange}
+                        ></input>
+                        <div className="valid-feedback">Entrada en proceso</div>
+                        <div className="invalid-feedback">
+                          Por favor introduce la sección
+                        </div>
+                      </label>
+                    </div>
+                  </form>
+                  <form onSubmit={this.handleSubmit} className="was-validated">
+                    <div className="form-group form-check">
+                      <label className="form-check-label">
+                        <div className="input-group-prepend"></div>
+                        <input
+                          placeholder="Aula"
+                          className="form-control"
+                          required
+                          name="aulaClase"
+                          value={aulaClase}
+                          onChange={this.handleInputChange}
+                        ></input>
+                        <div className="valid-feedback">Entrada en proceso</div>
+                        <div className="invalid-feedback">
+                          Por favor introduce el Aula
+                        </div>
+                      </label>
+                    </div>
+                  </form>
                 </div>
 
                 <div className="modal-footer">
-                  <button onClick={addCard} type="button" className="btn btn-success" data-dismiss="modal">
-                      Crear
+                  <button
+                    onClick={addCard}
+                    type="button"
+                    className="btn btn-success"
+                    data-dismiss="modal"
+                  >
+                    Crear
                   </button>
                   <button
                     type="button"
@@ -196,13 +231,15 @@ export default class Principal extends Component {
         </div>
       </div>
       //add all class component here!!
-
     );
-    
   }
 }
-
 const buttons_styles = {
-  "textDecoration": "none",
-  "background": "none"
+  textDecoration: "none",
+  background: "none"
 };
+
+const Home = withRouter(withFirebase(Principal));
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(homePage);
+export { Principal };
