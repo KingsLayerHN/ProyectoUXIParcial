@@ -31,7 +31,7 @@ class Principal extends Component {
   handleSubmit = event => {
     event.preventDefault();
   };
-  handleInputChange = event => {
+  onChange = event => {
     event.preventDefault();
     console.log(event);
     console.log("Name: ", event.target.name);
@@ -148,9 +148,9 @@ class Principal extends Component {
                         placeholder="Nombre clase"
                         value={nombreClase}
                         name="nombreClase"
-                        className="form-control"
+                        className="form-control input-css"
                         required
-                        onChange={this.handleInputChange}
+                        onChange={this.onChange}
                       ></input>
                     </div>
                     <div className="form-group form-check">
@@ -158,9 +158,9 @@ class Principal extends Component {
                         placeholder="Seccion"
                         value={seccionClase}
                         name="seccionClase"
-                        className="form-control"
+                        className="form-control  input-css"
                         required
-                        onChange={this.handleInputChange}
+                        onChange={this.onChange}
                       ></input>
                     </div>
                     <div className="form-group form-check">
@@ -168,9 +168,9 @@ class Principal extends Component {
                         placeholder="Aula"
                         value={aulaClase}
                         name="aulaClase"
-                        className="form-control"
+                        className="form-control  input-css"
                         required
-                        onChange={this.handleInputChange}
+                        onChange={this.onChange}
                       ></input>
                     </div>
                   </form>

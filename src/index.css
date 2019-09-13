@@ -245,8 +245,7 @@ input.error {
   padding-left: 2rem;
 }
 
-
-.signoutButton{
+.signoutButton {
   border: none !important;
   background: none;
   text-align: center;
@@ -254,9 +253,14 @@ input.error {
   padding-bottom: 3px;
 }
 
-.signoutButton:hover{
+.signoutButton:hover {
   background-color: #f5f5f5 !important;
   padding-left: 30px;
   padding-right: 30px;
+}
+.input-css {
+  border: none !important;
+  border-bottom: 1px solid !important;
+  border-color: #cecece !important;
   
 }
