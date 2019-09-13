@@ -13,7 +13,7 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  email: "", //email also its the username
+  email: "", 
   name: "",
   midleName: "",
   password: "",
@@ -25,6 +25,7 @@ class Registro extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
+
   onChange = event => {
     this.setState({
       [event.target.name]: event.target.value
@@ -52,6 +53,7 @@ class Registro extends Component {
 
     event.preventDefault();
   };
+
 
   render() {
     const { email, name, midleName, password, repeatPassword } = this.state;

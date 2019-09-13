@@ -5,6 +5,7 @@ import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { withRouter } from "react-router-dom";
 import NewTaskDetails from "../Tasks/Task";
+import $ from 'jquery';
 
 const homePage = () => (
   <div>
@@ -33,18 +34,30 @@ class Principal extends Component {
     this.setState({
       [event.target.name]: event.target.value
     });
+    console.log(this.state);
   };
+
 
   onSubmit = event => {
     const { nameClass, sectionName, roomClass } = this.state;
-    this.props.firebase.db.collection('Tasks').add({}).then().catch(error =>{
-      alert('usuario no puede ser registrado');
+    this.props.firebase.db.collection('Class').add({
+      nameClass,
+      sectionName,
+      roomClass
+    }).then( () => {
+      console.log(this.INITIAL_STATE);
+        this.setState = {...INITIAL_STATE}; 
+        alert('Clase Agregada!!!');  
+      }
+    ).catch(() =>{
+      alert('No se ha podido guardar');
     })
     event.preventDefault();
   };
 
   render() {
     const { nameClass, sectionName, roomClass } = this.state;
+    console.log(this.state);
 
     const isInvalid =
       nameClass === "" || sectionName === "" || roomClass === "";
@@ -142,8 +155,9 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Nombre clase"
-                        value={this.nameClass}
+                        type="text"
                         name="nameClass"
+                        value={nameClass}
                         className="form-control input-css"
                         required
                         onChange={this.onChange}
@@ -152,8 +166,9 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Seccion"
-                        value={this.sectionName}
+                        type="text"
                         name="sectionName"
+                        value={sectionName}
                         className="form-control  input-css"
                         required
                         onChange={this.onChange}
@@ -162,8 +177,9 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Aula"
-                        value={this.roomClass}
+                        type="text"
                         name="roomClass"
+                        value={roomClass}                       
                         className="form-control  input-css"
                         required
                         onChange={this.onChange}
@@ -172,8 +188,8 @@ class Principal extends Component {
                     <button
                       type="submit"
                       className="btn btn-success"
-                      data-dismiss="modal"
-                      disabled={isInvalid}
+                      disabled={isInvalid}  
+                      id="modalSubmit" 
                     >
                       Crear
                     </button>
@@ -190,6 +206,7 @@ class Principal extends Component {
             </div>
           </div>
         </nav>
+
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
         <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
