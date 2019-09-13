@@ -36,8 +36,9 @@ class Task extends Component {
     });
   };
 
+  //add task
+
   render() {
-    const { classCode, nameClass, sectionName, roomClass } = this.state;
 
     return (
       <Link to={ROUTES.BLACKBOARD} style={buttons_styles}>

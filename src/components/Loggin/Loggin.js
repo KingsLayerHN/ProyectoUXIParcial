@@ -88,7 +88,8 @@ class Loggin extends Component {
 }
 
 const buttons_styles = {
-  "textDecoration": "none"
+  "textDecoration": "none",
+  "width": "100%"
 };
 
 const SingIn = withRouter(withFirebase(Loggin));

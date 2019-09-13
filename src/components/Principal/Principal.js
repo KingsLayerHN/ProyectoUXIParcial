@@ -18,8 +18,7 @@ const buttons_styles = {
 };
 
 const INITIAL_STATE = {
-  classCode: "",
-  className: "susana", //email also its the username
+  className: "", 
   sectionName: "",
   roomClass: ""
 };
@@ -36,14 +35,19 @@ class Principal extends Component {
     });
   };
 
+  onSubmit = event => {
+    const { nameClass, sectionName, roomClass } = this.state;
+    this.props.firebase.db.collection('Tasks').add({}).then().catch(error =>{
+      alert('usuario no puede ser registrado');
+    })
+    event.preventDefault();
+  };
+
   render() {
-    const { classCode, nameClass, sectionName, roomClass } = this.state;
+    const { nameClass, sectionName, roomClass } = this.state;
 
     const isInvalid =
-      classCode === "" ||
-      nameClass === "" ||
-      sectionName === "" ||
-      roomClass === "";
+      nameClass === "" || sectionName === "" || roomClass === "";
 
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
@@ -108,13 +112,6 @@ class Principal extends Component {
                     aquí.
                   </h6>
                 </div>
-                <div className="modal-body">
-                  <input
-                    placeholder="Ingresa Código clase"
-                    className="form-control input-style"
-                    required
-                  ></input>
-                </div>
                 <div className="modal-footer">
                   <button type="button" className="btn btn-success">
                     Unirse
@@ -141,11 +138,11 @@ class Principal extends Component {
                 </div>
 
                 <div className="modal-body">
-                  <form onSubmit={this.handleSubmit}>
+                  <form onSubmit={this.onSubmit}>
                     <div className="form-group form-check">
                       <input
                         placeholder="Nombre clase"
-                        value={nameClass}
+                        value={this.nameClass}
                         name="nameClass"
                         className="form-control input-css"
                         required
@@ -155,7 +152,7 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Seccion"
-                        value={sectionName}
+                        value={this.sectionName}
                         name="sectionName"
                         className="form-control  input-css"
                         required
@@ -165,31 +162,29 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Aula"
-                        value={roomClass}
+                        value={this.roomClass}
                         name="roomClass"
                         className="form-control  input-css"
                         required
                         onChange={this.onChange}
                       ></input>
                     </div>
+                    <button
+                      type="submit"
+                      className="btn btn-success"
+                      data-dismiss="modal"
+                      disabled={isInvalid}
+                    >
+                      Crear
+                    </button>
+                    <button
+                      type="button"
+                      className="btn btn-danger"
+                      data-dismiss="modal"
+                    >
+                      Cancelar
+                    </button>
                   </form>
-                </div>
-
-                <div className="modal-footer">
-                  <button
-                    type="submit"
-                    className="btn btn-success"
-                    data-dismiss="modal"
-                  >
-                    Crear
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-danger"
-                    data-dismiss="modal"
-                  >
-                    Cancelar
-                  </button>
                 </div>
               </div>
             </div>
@@ -198,8 +193,7 @@ class Principal extends Component {
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
         <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
-          <NewTaskDetails nameClass={this.state.nameClass}/>
-          <NewTaskDetails />
+          <NewTaskDetails/>
         </div>
       </div>
     );
