@@ -47,7 +47,7 @@ class Loggin extends Component {
     return (
       <div className="bg-backgroud">
         <div className="container">
-          <div className="card animated bounceIn">
+          <div className="card animated bounceIn card-loggin">
             <form onSubmit={this.onSubmit} className="card-body">
               <img src={logo} className="logo"></img>
               <h3 className="text-center">Iniciar sesión</h3>

@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Card from "../Card/Card.js";
 import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { withRouter } from "react-router-dom";
+import NewTaskDetails from "../Tasks/Task";
 
 const homePage = () => (
   <div>
@@ -12,15 +12,16 @@ const homePage = () => (
   </div>
 );
 
-const INITIAL_STATE = {
-  nombreClase: "", //email also its the username
-  seccionClase: "",
-  aulaClase: ""
-};
-
 const buttons_styles = {
   textDecoration: "none",
   background: "none"
+};
+
+const INITIAL_STATE = {
+  classCode: "",
+  className: "susana", //email also its the username
+  sectionName: "",
+  roomClass: ""
 };
 
 class Principal extends Component {
@@ -28,24 +29,22 @@ class Principal extends Component {
     super(props);
     this.state = { ...INITIAL_STATE };
   }
-  handleSubmit = event => {
-    event.preventDefault();
-  };
+
   onChange = event => {
-    event.preventDefault();
-    console.log(event);
-    console.log("Name: ", event.target.name);
-    console.log("Value: ", event.target.value);
     this.setState({
       [event.target.name]: event.target.value
     });
   };
+
   render() {
-    const { nombreClase, seccionClase, aulaClase } = this.state;
-    function addCard() {
-      alert("Agregar Tarjetas con props");
-      this.inputEntry.value = "";
-    }
+    const { classCode, nameClass, sectionName, roomClass } = this.state;
+
+    const isInvalid =
+      classCode === "" ||
+      nameClass === "" ||
+      sectionName === "" ||
+      roomClass === "";
+
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
         <nav className=" navbar  navbar-expand-lg navbar-light bg-white page-header ">
@@ -146,8 +145,8 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Nombre clase"
-                        value={nombreClase}
-                        name="nombreClase"
+                        value={nameClass}
+                        name="nameClass"
                         className="form-control input-css"
                         required
                         onChange={this.onChange}
@@ -156,8 +155,8 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Seccion"
-                        value={seccionClase}
-                        name="seccionClase"
+                        value={sectionName}
+                        name="sectionName"
                         className="form-control  input-css"
                         required
                         onChange={this.onChange}
@@ -166,8 +165,8 @@ class Principal extends Component {
                     <div className="form-group form-check">
                       <input
                         placeholder="Aula"
-                        value={aulaClase}
-                        name="aulaClase"
+                        value={roomClass}
+                        name="roomClass"
                         className="form-control  input-css"
                         required
                         onChange={this.onChange}
@@ -196,8 +195,13 @@ class Principal extends Component {
             </div>
           </div>
         </nav>
+        {/*-----------------------------all task code show here!!!!-------------------------*/}
+
+        <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
+          <NewTaskDetails nameClass={this.state.nameClass}/>
+          <NewTaskDetails />
+        </div>
       </div>
-      //add all class component here!!
     );
   }
 }

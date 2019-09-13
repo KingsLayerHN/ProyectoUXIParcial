@@ -22,11 +22,11 @@ body {
   position: absolute;
 }
 
-.card-body {
+.card-body-loggin {
   display: flex;
   flex-direction: column;
 }
-.card {
+.card-loggin {
   width: 30%;
   margin: 0 auto;
 }
@@ -260,7 +260,19 @@ input.error {
 }
 .input-css {
   border: none !important;
-  border-bottom: 1px solid !important;
-  border-color: #cecece !important;
-  
+  border-bottom: 1px solid rgb(180, 179, 179) !important;
+  border-radius: 0rem !important; 
+  height: 100% !important;  
+}
+.input-join-class{
+  border-radius: 0rem !important;
+}
+
+.card-task {
+  width: 200px !important;
+  margin-right: 20px;
+}
+
+.logo-task {
+ width: 100%;
 }
