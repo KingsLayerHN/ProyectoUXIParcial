@@ -6,9 +6,9 @@ import { withAuthorization } from "../Sesion";
 import * as ROUTES from "../../constants/routes";
 import cardImg from "./Clase.jpg";
 
-const NewTaskDetails = () => (
+const NewClassDetails = () => (
   <div>
-    <NewTask />
+    <NewClass />
   </div>
 );
 
@@ -25,7 +25,7 @@ const INITIAL_STATE = {
   roomClass: ""
 };
 
-class Task extends Component {
+class Classes extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
@@ -39,7 +39,6 @@ class Task extends Component {
   //add task
 
   render() {
-
     return (
       <Link to={ROUTES.BLACKBOARD} style={buttons_styles}>
         <div className="card card-task text-center">
@@ -59,7 +58,7 @@ class Task extends Component {
   }
 }
 
-const NewTask = withRouter(withFirebase(Task));
+const NewClass = withRouter(withFirebase(Classes));
 const condition = authUser => !!authUser;
-export default withAuthorization(condition)(NewTaskDetails);
-export { Task };
+export default withAuthorization(condition)(NewClassDetails);
+export { Classes };

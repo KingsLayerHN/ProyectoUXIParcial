@@ -13,7 +13,7 @@ const SignUpPage = () => (
 );
 
 const INITIAL_STATE = {
-  email: "", 
+  email: "",
   name: "",
   midleName: "",
   password: "",
@@ -53,7 +53,6 @@ class Registro extends Component {
 
     event.preventDefault();
   };
-
 
   render() {
     const { email, name, midleName, password, repeatPassword } = this.state;

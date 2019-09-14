@@ -4,7 +4,7 @@ import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { withRouter } from "react-router-dom";
-import NewTaskDetails from "../Tasks/Task";
+import NewClassDetails from "../Class/Classes";
 import $ from 'jquery';
 
 const homePage = () => (
@@ -18,49 +18,64 @@ const buttons_styles = {
   background: "none"
 };
 
-const INITIAL_STATE = {
-  className: "", 
-  sectionName: "",
-  roomClass: ""
-};
-
 class Principal extends Component {
   constructor(props) {
     super(props);
-    this.state = { ...INITIAL_STATE };
+
+    this.state = {
+      Clases: []
+    };
+
+    this.props.firebase.db
+      .collection("Classes")
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          this.setState({
+            Clases: [...this.state.Clases, doc.data()]
+          });
+        });
+        console.log(this.state.Clases);
+      });
   }
 
-  onChange = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-    console.log(this.state);
-  };
-
-
   onSubmit = event => {
-    const { nameClass, sectionName, roomClass } = this.state;
-    this.props.firebase.db.collection('Class').add({
-      nameClass,
-      sectionName,
-      roomClass
-    }).then( () => {
-      console.log(this.INITIAL_STATE);
-        this.setState = {...INITIAL_STATE}; 
-        alert('Clase Agregada!!!');  
-      }
-    ).catch(() =>{
-      alert('No se ha podido guardar');
-    })
+    let nameClass = document.getElementById("nameClass").value;
+    let sectionName = document.getElementById("sectionName").value;
+    let roomClass = document.getElementById("roomClass").value;
+
+    this.props.firebase.db
+      .collection("Classes")
+      .add({
+        nameClass,
+        sectionName,
+        roomClass
+      })
+      .then(idRef => {
+        this.setState({
+          Clases: [
+            ...this.state.Clases,
+            {
+              nameClass,
+              sectionName,
+              roomClass
+            }
+          ]
+        });
+        document.getElementById("nameClass").value = "";
+        document.getElementById("sectionName").value = "";
+        document.getElementById("roomClass").value = "";
+        $('#mostrar_crear').modal('hide');
+      })
+      .catch(() => {
+        alert("No se ha podido guardar");
+      });
     event.preventDefault();
   };
 
   render() {
-    const { nameClass, sectionName, roomClass } = this.state;
-    console.log(this.state);
-
     const isInvalid =
-      nameClass === "" || sectionName === "" || roomClass === "";
+      this.nameClass === "" || this.sectionName === "" || this.roomClass === "";
 
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
@@ -157,10 +172,9 @@ class Principal extends Component {
                         placeholder="Nombre clase"
                         type="text"
                         name="nameClass"
-                        value={nameClass}
+                        id="nameClass"
                         className="form-control input-css"
                         required
-                        onChange={this.onChange}
                       ></input>
                     </div>
                     <div className="form-group form-check">
@@ -168,10 +182,9 @@ class Principal extends Component {
                         placeholder="Seccion"
                         type="text"
                         name="sectionName"
-                        value={sectionName}
+                        id="sectionName"
                         className="form-control  input-css"
                         required
-                        onChange={this.onChange}
                       ></input>
                     </div>
                     <div className="form-group form-check">
@@ -179,17 +192,16 @@ class Principal extends Component {
                         placeholder="Aula"
                         type="text"
                         name="roomClass"
-                        value={roomClass}                       
+                        id="roomClass"
                         className="form-control  input-css"
                         required
-                        onChange={this.onChange}
                       ></input>
                     </div>
                     <button
                       type="submit"
                       className="btn btn-success"
-                      disabled={isInvalid}  
-                      id="modalSubmit" 
+                      disabled={isInvalid}
+                      id="modalSubmit"
                     >
                       Crear
                     </button>
@@ -209,9 +221,7 @@ class Principal extends Component {
 
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
-        <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
-          <NewTaskDetails/>
-        </div>
+        <div className="container-fluid d-flex flex-wrap mt-4 tex-center"></div>
       </div>
     );
   }

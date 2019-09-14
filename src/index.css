@@ -261,10 +261,10 @@ input.error {
 .input-css {
   border: none !important;
   border-bottom: 1px solid rgb(180, 179, 179) !important;
-  border-radius: 0rem !important; 
-  height: 100% !important;  
+  border-radius: 0rem !important;
+  height: 100% !important;
 }
-.input-join-class{
+.input-join-class {
   border-radius: 0rem !important;
 }
 
@@ -274,5 +274,5 @@ input.error {
 }
 
 .logo-task {
- width: 100%;
+  width: 100%;
 }
