@@ -4,8 +4,7 @@ import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { withRouter } from "react-router-dom";
-import NewClassDetails from "../Class/Classes";
-import $ from 'jquery';
+import $ from "jquery";
 
 const homePage = () => (
   <div>
@@ -21,32 +20,40 @@ const buttons_styles = {
 class Principal extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       Clases: []
     };
+    this.uploadClases();
+  }
 
+  uploadClases = () => {
     this.props.firebase.db
       .collection("Classes")
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          this.setState({
-            Clases: [...this.state.Clases, doc.data()]
-          });
+          if (doc.data().user === this.props.firebase.auth.currentUser.uid) {
+            this.setState({
+              Clases: [...this.state.Clases, doc.data()]
+            });
+          }
         });
-        console.log(this.state.Clases);
       });
-  }
+  };
 
   onSubmit = event => {
+    //console.log("no esta pasando aqui", this.props.firebase.actualUser.uid);
     let nameClass = document.getElementById("nameClass").value;
     let sectionName = document.getElementById("sectionName").value;
     let roomClass = document.getElementById("roomClass").value;
-
+    let user = "";
+    if (this.props.firebase.auth.currentUser != null) {
+      user = this.props.firebase.auth.currentUser.uid;
+    }
     this.props.firebase.db
       .collection("Classes")
       .add({
+        user,
         nameClass,
         sectionName,
         roomClass
@@ -56,6 +63,7 @@ class Principal extends Component {
           Clases: [
             ...this.state.Clases,
             {
+              user,
               nameClass,
               sectionName,
               roomClass
@@ -65,7 +73,7 @@ class Principal extends Component {
         document.getElementById("nameClass").value = "";
         document.getElementById("sectionName").value = "";
         document.getElementById("roomClass").value = "";
-        $('#mostrar_crear').modal('hide');
+        $("#mostrar_crear").modal("hide");
       })
       .catch(() => {
         alert("No se ha podido guardar");

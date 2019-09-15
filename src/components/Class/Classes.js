@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from "react-router-dom";
 import { withAuthorization } from "../Sesion";
@@ -29,6 +28,7 @@ class Classes extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
+    
   }
   onChange = event => {
     this.setState({

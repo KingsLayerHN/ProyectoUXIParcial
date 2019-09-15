@@ -5,7 +5,6 @@ import Principal from "./components/Principal/Principal";
 import Blackboard from "./components/Blackboard/Blackboard";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import * as ROUTES from "./constants/routes";
-import { AuthUserContext } from "./components/Sesion";
 import { withFirebase } from "./components/Firebase";
 
 class App extends Component {

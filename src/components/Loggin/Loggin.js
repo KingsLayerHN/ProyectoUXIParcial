@@ -30,7 +30,7 @@ class Loggin extends Component {
         this.props.history.push(ROUTES.HOME);
       })
       .catch(error => {
-        alert('Usuario o contraseña incorrecta');
+        alert("Usuario o contraseña incorrecta");
         this.setState({ ...INITIAL_STATE });
       });
     event.preventDefault();
@@ -88,8 +88,8 @@ class Loggin extends Component {
 }
 
 const buttons_styles = {
-  "textDecoration": "none",
-  "width": "100%"
+  textDecoration: "none",
+  width: "100%"
 };
 
 const SingIn = withRouter(withFirebase(Loggin));
