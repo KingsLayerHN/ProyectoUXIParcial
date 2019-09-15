@@ -50,10 +50,10 @@ class Principal extends Component {
         .doc(this.state.Clases[index].id)
         .delete()
         .then(function() {
-          alert("Clase Borrada Exitosamente!!!");
+          console.log("delete class success!!!");
         })
         .catch(function(error) {
-          console.error("Error removing document: ", error);
+          console.error("Error remove document: ", error);
         });
 
       this.setState({
@@ -63,6 +63,21 @@ class Principal extends Component {
       });
     }
   }
+
+  addToState = doc => {
+    this.props.firebase.db
+      .collection("Classes")
+      .doc(doc)
+      .get()
+      .then(querySnapshot => {
+        this.setState({
+          Clases: [...this.state.Clases, querySnapshot]
+        });
+      })
+      .catch(error => {
+        console.error("Error remove document: ", error);
+      });
+  };
 
   onSubmit = event => {
     //console.log("no esta pasando aqui", this.props.firebase.actualUser.uid);
@@ -82,24 +97,14 @@ class Principal extends Component {
         roomClass
       })
       .then(idRef => {
-        this.setState({
-          Clases: [
-            ...this.state.Clases,
-            {
-              user,
-              nameClass,
-              sectionName,
-              roomClass
-            }
-          ]
-        });
+        this.addToState(idRef.id);
         document.getElementById("nameClass").value = "";
         document.getElementById("sectionName").value = "";
         document.getElementById("roomClass").value = "";
         $("#mostrar_crear").modal("hide");
       })
-      .catch(() => {
-        alert("No se ha podido guardar");
+      .catch(error => {
+        console.error("Error add document: ", error);
       });
     event.preventDefault();
   };
@@ -263,6 +268,7 @@ class Principal extends Component {
                       type="button"
                       className="btn btn-danger"
                       data-dismiss="modal"
+                      onClick={this.onClickcleanStatus}
                     >
                       Cancelar
                     </button>
