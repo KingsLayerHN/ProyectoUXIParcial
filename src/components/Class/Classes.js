@@ -28,7 +28,6 @@ class Classes extends Component {
   constructor(props) {
     super(props);
     this.state = { ...INITIAL_STATE };
-    
   }
   onChange = event => {
     this.setState({
@@ -46,7 +45,7 @@ class Classes extends Component {
             className="card-header p-0 text-center logo-task d-flex"
             src={cardImg}
           ></img>
-          <div className="card-body p-1">
+          <div className="card-body p-5">
             <h5 className="card-title">dale</h5>
             <p className="card-text">Sección única</p>
             <p className="card-text">Sección única</p>

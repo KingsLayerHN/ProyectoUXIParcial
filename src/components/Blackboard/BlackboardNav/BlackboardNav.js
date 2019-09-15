@@ -62,7 +62,7 @@ export default class BlackboardNav extends Component {
                     ></input>
                   </div>
                   <div className="col">
-                    <p1>Fecha de entrega:</p1>
+                    <p>Fecha de entrega:</p>
                     <div className="input-group date">
                       <input
                         type="text"

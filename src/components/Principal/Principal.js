@@ -3,8 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignOutButton from "../SignOut/SignOut";
 import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
-import { withRouter } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
+import cardImg from "./Clase.jpg";
+import * as ROUTES from "../../constants/routes";
 
 const homePage = () => (
   <div>
@@ -14,7 +16,8 @@ const homePage = () => (
 
 const buttons_styles = {
   textDecoration: "none",
-  background: "none"
+  background: "none",
+  color: "black"
 };
 
 class Principal extends Component {
@@ -82,8 +85,25 @@ class Principal extends Component {
   };
 
   render() {
-    const isInvalid =
-      this.nameClass === "" || this.sectionName === "" || this.roomClass === "";
+    //add class on home
+    const addNotes = this.state.Clases.map((actualClass, i) => {
+      return (
+        <Link to={ROUTES.BLACKBOARD} style={buttons_styles} key={i}>
+          <div className="card card-task text-center mb-4">
+            <img
+              className="card-header p-0 text-center logo-task d-flex"
+              src={cardImg}
+            ></img>
+            <div className="card-body p-1">
+              <h5 className="card-title">{actualClass.nameClass}</h5>
+              <p className="card-text">{actualClass.sectionName}</p>
+              <p className="card-text">{actualClass.roomClass}</p>
+              <p className="card-footer p-0 bg-0">Codigo:</p>
+            </div>
+          </div>
+        </Link>
+      );
+    });
 
     return (
       <div className="div.container-fluid.d-flex justify-content-center">
@@ -174,7 +194,7 @@ class Principal extends Component {
                 </div>
 
                 <div className="modal-body">
-                  <form onSubmit={this.onSubmit}>
+                  <form onSubmit={this.onSubmit} className="d-flex flex-column">
                     <div className="form-group form-check">
                       <input
                         placeholder="Nombre clase"
@@ -201,14 +221,13 @@ class Principal extends Component {
                         type="text"
                         name="roomClass"
                         id="roomClass"
-                        className="form-control  input-css"
+                        className="form-control  input-css "
                         required
                       ></input>
                     </div>
                     <button
                       type="submit"
-                      className="btn btn-success"
-                      disabled={isInvalid}
+                      className="btn btn-success mb-1"
                       id="modalSubmit"
                     >
                       Crear
@@ -229,7 +248,9 @@ class Principal extends Component {
 
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
-        <div className="container-fluid d-flex flex-wrap mt-4 tex-center"></div>
+        <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
+          {addNotes}
+        </div>
       </div>
     );
   }
