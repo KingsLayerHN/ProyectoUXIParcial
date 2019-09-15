@@ -15,6 +15,11 @@ const INITIAL_STATE = {
   password: ""
 };
 
+const buttons_styles = {
+  textDecoration: "none",
+  width: "100%"
+};
+
 class Loggin extends Component {
   constructor(props) {
     super(props);
@@ -49,7 +54,7 @@ class Loggin extends Component {
         <div className="container">
           <div className="card animated bounceIn card-loggin">
             <form onSubmit={this.onSubmit} className="card-body">
-              <img src={logo} className="logo"></img>
+              <img src={logo} className="logo" alt="logo"></img>
               <h3 className="text-center">Iniciar sesión</h3>
               <input
                 placeholder="Usuario"
@@ -86,11 +91,6 @@ class Loggin extends Component {
     );
   }
 }
-
-const buttons_styles = {
-  textDecoration: "none",
-  width: "100%"
-};
 
 const SingIn = withRouter(withFirebase(Loggin));
 export default SignInPage;

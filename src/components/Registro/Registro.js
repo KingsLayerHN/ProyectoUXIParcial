@@ -20,6 +20,10 @@ const INITIAL_STATE = {
   repeatPassword: ""
 };
 
+const buttons_styles = {
+  color: "rgb(136, 135, 125)"
+};
+
 class Registro extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +38,7 @@ class Registro extends Component {
 
   //add user
   onSubmit = event => {
-    const { email, name, midleName, password, repeatPassword } = this.state;
+    const { email, name, midleName, password } = this.state;
     this.props.firebase
       .doCreateUserWithEmailAndPassword(email, password)
       .then(authUser => {
@@ -140,9 +144,7 @@ class Registro extends Component {
     );
   }
 }
-const buttons_styles = {
-  color: "rgb(136, 135, 125)"
-};
+
 const SignUp = withRouter(withFirebase(Registro));
 export default SignUpPage;
 export { Registro };

@@ -5,7 +5,6 @@ import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
-import cardImg from "./Clase.jpg";
 import * as ROUTES from "../../constants/routes";
 
 const homePage = () => (
@@ -37,12 +36,33 @@ class Principal extends Component {
         querySnapshot.forEach(doc => {
           if (doc.data().user === this.props.firebase.auth.currentUser.uid) {
             this.setState({
-              Clases: [...this.state.Clases, doc.data()]
+              Clases: [...this.state.Clases, doc]
             });
           }
         });
       });
   };
+
+  removeNote(index) {
+    if (window.confirm("Are you sure to delete it?")) {
+      this.props.firebase.db
+        .collection("Classes")
+        .doc(this.state.Clases[index].id)
+        .delete()
+        .then(function() {
+          alert("Clase Borrada Exitosamente!!!");
+        })
+        .catch(function(error) {
+          console.error("Error removing document: ", error);
+        });
+
+      this.setState({
+        Clases: this.state.Clases.filter((e, i) => {
+          return i !== index;
+        })
+      });
+    }
+  }
 
   onSubmit = event => {
     //console.log("no esta pasando aqui", this.props.firebase.actualUser.uid);
@@ -88,20 +108,27 @@ class Principal extends Component {
     //add class on home
     const addNotes = this.state.Clases.map((actualClass, i) => {
       return (
-        <Link to={ROUTES.BLACKBOARD} style={buttons_styles} key={i}>
-          <div className="card card-task text-center mb-4">
-            <img
-              className="card-header p-0 text-center logo-task d-flex"
-              src={cardImg}
-            ></img>
-            <div className="card-body p-1">
-              <h5 className="card-title">{actualClass.nameClass}</h5>
-              <p className="card-text">{actualClass.sectionName}</p>
-              <p className="card-text">{actualClass.roomClass}</p>
-              <p className="card-footer p-0 bg-0">Codigo:</p>
-            </div>
+        <div className="card card-task text-center mb-4" key={i}>
+          <button
+            className="badge badge-danger"
+            onClick={this.removeNote.bind(this, i)}
+          >
+            x
+          </button>
+
+          <div className="card-header renderClass"></div>
+          <div className="card-body p-1">
+            <h5 className="card-title">{actualClass.data().nameClass}</h5>
+            <p className="card-text">{actualClass.data().sectionName}</p>
+            <p className="card-text">{actualClass.data().roomClass}</p>
           </div>
-        </Link>
+          <div className=" card-footer p-0 font-weight-normal small">
+            Codigo Clase <br />
+            <h6 className="small font-weight-bold text-danger">
+              {actualClass.id}
+            </h6>
+          </div>
+        </div>
       );
     });
 

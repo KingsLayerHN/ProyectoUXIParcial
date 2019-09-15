@@ -276,3 +276,22 @@ input.error {
 .logo-task {
   width: 100%;
 }
+
+.badge {
+  border: none !important;
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 100% !important;
+  background-color: rgb(243, 117, 117) !important;
+}
+.badge:hover {
+  background-color: rgb(177, 174, 174) !important;
+}
+
+.renderClass {
+  background-color: rgb(31, 162, 238) !important;
+  height: 50px !important;
+}
