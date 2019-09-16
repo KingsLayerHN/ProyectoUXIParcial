@@ -6,6 +6,7 @@ import { withFirebase } from "../Firebase";
 import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
 import * as ROUTES from "../../constants/routes";
+import Blackboard from "../Blackboard/Blackboard";
 
 const homePage = () => (
   <div>
@@ -34,16 +35,18 @@ class Principal extends Component {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          if (doc.data().user === this.props.firebase.auth.currentUser.uid) {
-            this.setState({
-              Clases: [...this.state.Clases, doc]
-            });
+          if (this.props.firebase.auth.currentUser != null) {
+            if (doc.data().user === this.props.firebase.auth.currentUser.uid) {
+              this.setState({
+                Clases: [...this.state.Clases, doc]
+              });
+            }
           }
         });
       });
   };
 
-  removeNote(index) {
+  removeNote = index => {
     if (window.confirm("Are you sure to delete it?")) {
       this.props.firebase.db
         .collection("Classes")
@@ -62,7 +65,7 @@ class Principal extends Component {
         })
       });
     }
-  }
+  };
 
   addToState = doc => {
     this.props.firebase.db
@@ -109,24 +112,33 @@ class Principal extends Component {
     event.preventDefault();
   };
 
+  // ---------------------------------------RENDER -------------------------
   render() {
+    // create blackboard on other page
+    const sendState = () => {
+      return <div></div>;
+    };
     //add class on home
-    const addNotes = this.state.Clases.map((actualClass, i) => {
+    const addClass = this.state.Clases.map((actualClass, i) => {
       return (
-        <div className="card card-task text-center mb-4" key={i}>
+        <div
+          className="card card-task text-center mb-4 animated bounceIn"
+          key={i}
+        >
           <button
             className="badge badge-danger"
             onClick={this.removeNote.bind(this, i)}
           >
             x
           </button>
-
-          <div className="card-header renderClass"></div>
-          <div className="card-body p-1">
-            <h5 className="card-title">{actualClass.data().nameClass}</h5>
-            <p className="card-text">{actualClass.data().sectionName}</p>
-            <p className="card-text">{actualClass.data().roomClass}</p>
-          </div>
+          <Link to={ROUTES.BLACKBOARD} className="linkToBlackboard">
+            <div className="card-header renderClass"></div>
+            <div className="card-body p-1">
+              <h5 className="card-title">{actualClass.data().nameClass}</h5>
+              <p className="card-text">{actualClass.data().sectionName}</p>
+              <p className="card-text">{actualClass.data().roomClass}</p>
+            </div>
+          </Link>
           <div className=" card-footer p-0 font-weight-normal small">
             Codigo Clase <br />
             <h6 className="small font-weight-bold text-danger">
@@ -282,7 +294,7 @@ class Principal extends Component {
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
         <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
-          {addNotes}
+          {addClass}
         </div>
       </div>
     );

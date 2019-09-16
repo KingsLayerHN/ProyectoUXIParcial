@@ -295,3 +295,7 @@ input.error {
   background-color: rgb(31, 162, 238) !important;
   height: 50px !important;
 }
+.linkToBlackboard{
+  text-decoration: none !important;
+  color: black !important;
+}
