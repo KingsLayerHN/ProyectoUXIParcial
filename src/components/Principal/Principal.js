@@ -5,7 +5,6 @@ import { withAuthorization } from "../Sesion";
 import { withFirebase } from "../Firebase";
 import { Link, withRouter } from "react-router-dom";
 import $ from "jquery";
-import * as ROUTES from "../../constants/routes";
 import Blackboard from "../Blackboard/Blackboard";
 
 const homePage = () => (
@@ -19,13 +18,14 @@ const buttons_styles = {
   background: "none",
   color: "black"
 };
+const INITIAL_STATE = {
+  Clases: []
+};
 
 class Principal extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      Clases: []
-    };
+    this.state = { ...INITIAL_STATE };
     this.uploadClases();
   }
 
@@ -52,10 +52,10 @@ class Principal extends Component {
         .collection("Classes")
         .doc(this.state.Clases[index].id)
         .delete()
-        .then(function() {
+        .then(() => {
           console.log("delete class success!!!");
         })
-        .catch(function(error) {
+        .catch(error => {
           console.error("Error remove document: ", error);
         });
 
@@ -83,7 +83,6 @@ class Principal extends Component {
   };
 
   onSubmit = event => {
-    //console.log("no esta pasando aqui", this.props.firebase.actualUser.uid);
     let nameClass = document.getElementById("nameClass").value;
     let sectionName = document.getElementById("sectionName").value;
     let roomClass = document.getElementById("roomClass").value;
@@ -114,11 +113,17 @@ class Principal extends Component {
 
   // ---------------------------------------RENDER -------------------------
   render() {
-    // create blackboard on other page
-    const sendState = () => {
-      return <div></div>;
-    };
     //add class on home
+
+    const showBlackboardSpace = () => {
+      $(".plusSimbol").hide();
+      return (
+        <div>
+          <h1>como estas todos</h1>
+        </div>
+      );
+    };
+
     const addClass = this.state.Clases.map((actualClass, i) => {
       return (
         <div
@@ -131,14 +136,18 @@ class Principal extends Component {
           >
             x
           </button>
-          <Link to={ROUTES.BLACKBOARD} className="linkToBlackboard">
+          <a
+            className="linkToBlackboard"
+            href="#"
+            onClick={showBlackboardSpace}
+          >
             <div className="card-header renderClass"></div>
             <div className="card-body p-1">
               <h5 className="card-title">{actualClass.data().nameClass}</h5>
               <p className="card-text">{actualClass.data().sectionName}</p>
               <p className="card-text">{actualClass.data().roomClass}</p>
             </div>
-          </Link>
+          </a>
           <div className=" card-footer p-0 font-weight-normal small">
             Codigo Clase <br />
             <h6 className="small font-weight-bold text-danger">
@@ -159,7 +168,7 @@ class Principal extends Component {
           </div>
           <div id="plusButton" className="dropdown dropleft ml-auto">
             <button
-              className="dropdown-toogle icons"
+              className="dropdown-toogle icons plusSimbol"
               href="#"
               id="dropdownMenu2"
               data-toggle="dropdown"
@@ -293,7 +302,7 @@ class Principal extends Component {
 
         {/*-----------------------------all task code show here!!!!-------------------------*/}
 
-        <div className="container-fluid d-flex flex-wrap mt-4 tex-center">
+        <div className="container-fluid d-flex flex-wrap mt-4 tex-center blackboardSpace">
           {addClass}
         </div>
       </div>
